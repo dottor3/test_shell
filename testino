@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\begin{document}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        % 5-dimensional manifold
+        \node (M5) [draw, rectangle, minimum width=3cm, minimum height=2cm] at (0, 0) {$M_5$};
+        
+        % 10-dimensional fibers
+        \foreach \x in {1, 2, 3}
+        {
+            \node (F10\x) [draw, rectangle, minimum width=1cm, minimum height=1cm, below=0.5cm of M5] {$SO(1,4)$};
+            \draw[->] (F10\x.north) -- (M5.south);
+        }
+        
+        % 4-dimensional manifold
+        \node (M4) [draw, rectangle, minimum width=3cm, minimum height=2cm, right=3cm of M5] {$M_4$};
+        
+        % 6-dimensional fibers
+        \foreach \x in {1, 2}
+        {
+            \node (F6\x) [draw, rectangle, minimum width=1cm, minimum height=1cm, below=0.5cm of M4] {$SO(1,3)$};
+            \draw[->] (F6\x.north) -- (M4.south);
+        }
+        
+        % Fibration arrow
+        \draw[->,thick] (M5.east) -- (M4.west) node[midway, above]{};
+        \draw[->,thick] (F101.east) -- (F61.west);
+    \end{tikzpicture}
+    \caption{Projection of the 5-dimensional symmetric space onto spacetime}
+\end{figure}
+\end{document}
